@@ -1,6 +1,4 @@
 # Project सहयोग
-The final submission for [MLH HackJaipur Hackathon 2020](https://www.hackjaipur.com/)
-
 ## However, this is a public repository and aimed for good so:<br>
  ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
