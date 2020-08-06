@@ -1,5 +1,5 @@
 # Project सहयोग
-## However, this is a public repository and aimed for good so:<br>
+## Public Repository of the Source Code<br>
  ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
 
 
@@ -27,3 +27,4 @@ The project is hosted on heroku and can be found on the link: [http://sahyog-the
  <li>On CLI, run nodejs and type node server.js</li>
  <li>In a browser, open http://localhost:[the port you entered in server.js]</li>
 </ul>
+**Security Vulnerabilities still exist in signup mechanism.**
