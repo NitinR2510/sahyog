@@ -27,4 +27,5 @@ The project is hosted on heroku and can be found on the link: [http://sahyog-the
  <li>On CLI, run nodejs and type node server.js</li>
  <li>In a browser, open http://localhost:[the port you entered in server.js]</li>
 </ul>
+
 **Security Vulnerabilities still exist in signup mechanism.**
