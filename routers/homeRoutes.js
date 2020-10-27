@@ -1,3 +1,4 @@
+global.tym=0
 const { Router }=require('express')
 const {createHospital,findHospital,findHospitalPPE,createHospitalPPE,findAllHospitals}=require('../controllers/hospital')
 const {createVendor,findVendor,findVendorPPE,createVendorPPE,findAllVendors}=require('../controllers/vendor')
@@ -18,6 +19,12 @@ route.post('/signup.hbs',async (req,res)=>{
 const {name,email,password,confirm_password,type,address,contact}=req.body
     if(password!=confirm_password)
             res.render('/signup.hbs',{passError:`Password doesn't match`})
+    /*
+    if (password.length < 8)
+    res.render ('/signup.hbs',{passError: 'Password too small. Please try a longer password.'})
+    if (contact.length < 10 || contact.length >11)
+    res.render ('signup.hbs' , {passError: 'Invalid Contact Number entered'}
+    */
     if(type!='Hospital' && type!='Vendor')
             res.render('/signup.hbs',{typeError:`Enter either Hospital or Vendor`})
     if(type=='Hospital'){
@@ -29,7 +36,7 @@ const {name,email,password,confirm_password,type,address,contact}=req.body
         const {name,address,contact,email,password}=req.body
         const vendor=await createVendor(name,address,contact,email,password)
     }
-    res.redirect('/')
+    res.redirect('http://localhost:5000')
 })
 
 route.get('/login.hbs',(req,res)=>{
@@ -40,11 +47,17 @@ route.post('/login.hbs',async (req,res)=>{
     const { username,password }= req.body
     const hospital=await findHospital(username,password)
     const vendor=await findVendor(username,password)
-        if(hospital) req.session.userId=hospital.id
-        else if(vendor)   req.session.userId=vendor.id
+        if(hospital) {
+            req.session.userId = hospital.id
+            tym = Date.now()
+        }
+        else if(vendor)   {
+            req.session.userId=vendor.id
+            tym = Date.now()
+        }
         else  res.render('login',{error:`Invalid email or password`})
 
-    res.redirect('/')
+    res.redirect('http://localhost:5000')
     })
 
 route.get('/logout',(req,res)=>{
@@ -56,6 +69,11 @@ route.get('/profile',async (req,res)=>{
     const vendorUser=await vendor.findByPk(req.session.userId)
     const hospitalUser=await hospital.findByPk(req.session.userId)
     const user=vendorUser||hospitalUser
+    const now = Date.now()
+    if (now > tym + 1000*60){
+        tym = 0
+        res.redirect('/')
+    }
 
     const receipts=await orderReceipt.findAll({where:{hospitalId:user.id}})
     ppes=await findHospitalPPE(req.session.userId)
@@ -78,6 +96,11 @@ route.post('/profile',async (req,res)=>{
 })
 
 route.get('/hospitals',async (req,res)=>{
+    const now = Date.now()
+    if(now > tym + 1000*60){
+        tym = 0
+        res.redirect('/')
+    }
     const hospitalList=await findAllHospitals()
     const vendorUser=await vendor.findByPk(req.session.userId)
     const hospitalUser=await hospital.findByPk(req.session.userId)

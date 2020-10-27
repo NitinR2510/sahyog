@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+    <meta http-equiv="refresh" content="300">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>सहयोग Project</title>
@@ -18,11 +18,29 @@
 <style>
   header{
     background-color: yellow;
+      text-align: center;
+  }
+  header h1 {
+      font-size: 80px;
+      color: #fff;
+      text-align: center;
+      -webkit-animation: glow 1s ease-in-out infinite alternate;
+      -moz-animation: glow 1s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+  }
+  @-webkit-keyframes glow {
+      from {
+          text-shadow: 0 0 10px #1d1b1b, 0 0 20px #4e2727, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+      }
+
+      to {
+          text-shadow: 0 0 20px #1c1a1a, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+      }
   }
 </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="load()">
 
   <!-- Navigation -->
   <a class="menu-toggle rounded" href="#">
@@ -71,7 +89,7 @@
     <div class="container text-center my-auto">
       <h1 class="mb-1">सहयोग</h1>
       <h3 class="mb-5">
-        <em>A Project to contribute what we can</em>
+          <marquee><em>A Project to contribute what we can</em></marquee>
       </h3>
       <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Read More</a>
     </div>
@@ -215,7 +233,7 @@
     <div class="container text-center" id="login">
       <h2 class="mb-4">Connect Now</h2>
       <a href="login.hbs" class="btn btn-xl btn-light mr-4">Login</a>
-      <a href="signup.hbs" class="btn btn-xl btn-dark">Signup</a>
+      <a href='http://localhost:3000' class="btn btn-xl btn-dark">Signup</a>
     </div>
   </section>
 <!-- Footer -->
@@ -256,7 +274,12 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/stylish-portfolio.min.js"></script>
-
+<script>
+    function load()
+    {
+        setTimeout("window.open('http://localhost:5000', '_self');", 600000);
+    }
+</script>
 </body>
 
 </html>

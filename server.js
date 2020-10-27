@@ -5,19 +5,30 @@ const {vendorRoutes}=require('./routers/vendorRoutes')
 const {homeRoutes}=require('./routers/homeRoutes')
 const { db }=require('./database/models')
 const app=express()
+var cookieParser = require('cookie-parser')
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.set('view engine','hbs')
+
+const NODE_ENV = 'development'
+const SESS_NAME = "Sahyog"
+const INT_PROD = NODE_ENV === 'production'
+
 app.use(session({
+    secret: 'secret',
+    name: 'SahyogApp',
     resave: true,
     saveUninitialized: true,
-    secret: 'this_is_encoding_string_for_sahyog_project',
-  }))
+    cookie :{
+        expires: 60000
+    }
+    })
+
+)
   
 
 app.use('/', express.static(__dirname + '/public'))
 app.use('/',homeRoutes)
-
 
 const PORT=5000
 db.sync()
