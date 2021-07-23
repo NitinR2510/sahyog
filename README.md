@@ -1,3 +1,5 @@
+<i>This project has been archived. The website still works. This repository is not the source repository for the website.</i>
+
 # Project सहयोग
 ## Public Repository of the Source Code<br>
  ## Contributing [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
